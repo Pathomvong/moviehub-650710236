@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { forget } from '../api/cache';
-import { CACHE_KEY, getMovies } from '../api/tmdb';
+import { getMovies } from '../api/backend';
+//import { forget } from '../api/cache';
+//import { CACHE_KEY, getMovies } from '../api/tmdb';
 import MovieGrid from '../components/MovieGrid';
 
 function Movies() {
@@ -72,7 +73,7 @@ function Movies() {
 
       {/* ปุ่มลองใหม่ต้องล้าง cache ก่อน ไม่งั้นจะได้ของเก่าหรือ error เดิมซ้ำ */}
       <MovieGrid movies={shown} status={status} error={error}
-                 onRetry={() => { forget(CACHE_KEY); setReloadKey(k => k + 1); }} />
+                 onRetry={() => setReloadKey(k => k + 1)} />
     </div>
   );
 }
